@@ -948,6 +948,11 @@ petal_width_min = min(entry["petal_width"] for entry in data_set_flores)
 petal_width_avg = sum(entry["petal_width"] for entry in data_set_flores) / len(data_set_flores) 
 
 print("Iris-setosa")
+
+print("Máximo largura da sépala:", sepal_length_max)
+print("Mínimo largura da sépala:", sepal_length_min)
+print("Média da largura da sépala:", sepal_length_avg)
+
 print("Máximo largura da sépala:", sepal_width_max)
 print("Mínimo largura da sépala:", sepal_width_min)
 print("Média da largura da sépala:", sepal_width_avg)
@@ -978,6 +983,10 @@ petal_width_min2 = min(entry["petal_width"] for entry in data_set_flores2)
 petal_width_avg2 = sum(entry["petal_width"] for entry in data_set_flores2) / len(data_set_flores2)
 
 print("Iris-versicolor")
+print("Máximo largura da sépala:", sepal_length_max2)
+print("Mínimo largura da sépala:", sepal_length_min2)
+print("Média da largura da sépala:", sepal_length_avg2)
+
 print("Máximo largura da sépala:", sepal_width_max2)
 print("Mínimo largura da sépala:", sepal_width_min2)
 print("Média da largura da sépala:", sepal_width_avg2)
@@ -1032,10 +1041,18 @@ sepal_width_input = float(input("Informe a largura da sépala: "))
 petal_length_input = float(input("Informe o comprimento da pétala: "))
 petal_width_input = float(input("Informe a largura da pétala: "))   
 
-new_flower = [sepal_length_input, sepal_width_input, petal_length_input, petal_width_input]
+flor = [sepal_length_input, sepal_width_input, petal_length_input, petal_width_input]
+def distancia(avg_values, input_values):
+    return sum((a - b) ** 2 for a, b in zip(avg_values, input_values)) ** 0.5
+
+distance_setosa = distancia(setosa_avg, flor)
+distance_versicolor = distancia(versicolor_avg, flor)
+distance_virginica = distancia(virginica_avg, flor)
 
 
-      
+sua_flor = min((distance_setosa, 'Iris-setosa'), (distance_versicolor, 'Iris-versicolor'), (distance_virginica, 'Iris-virginica'), key=lambda x: x[0])[1]
+
+print("O tipo de flor que você tem é", sua_flor)
       
 # PASSOS:
     
